@@ -1,0 +1,52 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | Math By Rony{% endblock %}
+
+{% block extrastyle %}
+
+<style>
+    .dashboard #content{
+        width: 70%;
+    }
+
+    #content-main{
+        width: 100%;
+    }
+
+    .module h2, .module caption, .inline-group h2{
+        background: #0f3b50;
+    }
+
+    div.breadcrumbs{
+        background: #0f3b50;
+    }
+
+    tr> td,th {
+        vertical-align: middle;
+    }
+
+    .aligned .form-row input[type="text"], input[type="url"]{
+        width: 50%;
+    }
+
+    .aligned label{
+        font-size: 18px;
+    }
+</style>
+
+{% endblock %}
+
+<!-- ckeditor  -->
+{% block extrahead %}
+<link rel="shortcut icon" href="{% static 'img/logo.png' %}">
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML'></script>
+{{ block.super }}
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Math By Rony</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

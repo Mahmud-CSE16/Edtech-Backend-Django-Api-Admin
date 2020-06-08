@@ -23,7 +23,7 @@ class SubCategory(models.Model):
 
     def __str__(self):
         return self.name+"-->"+self.category.name
-        
+
 
 """Chapter Class"""
 class Chapter(models.Model):
@@ -113,11 +113,6 @@ class Question(models.Model):
     types = models.ManyToManyField(QuestionType)
 
 
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=['question_body', 'option1'], name='question constraint')
-        ]
-
     def __str__(self):
         return mark_safe(self.question_body)
 
@@ -125,4 +120,3 @@ class Question(models.Model):
             return mark_safe(self.question_body)
 
     question_body_field.short_description = 'Question Body'
-    

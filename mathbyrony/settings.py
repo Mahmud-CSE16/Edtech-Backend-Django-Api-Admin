@@ -25,7 +25,7 @@ SECRET_KEY = 'qkikxb(s78)sct=x7!9!$()@mqm*v6-o@$+iq&nj*ykd)xgntt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mahmudul7959.pythonanywhere.com',]
 
 
 # Application definition
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
 ]
 
-#CKEDITOR_UPLOAD_PATH 
+#CKEDITOR_UPLOAD_PATH
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 #CKEDITOR_CONFIGS
@@ -70,7 +70,7 @@ CKEDITOR_CONFIGS = {
                        'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',]},
             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
             {'name': 'insert',
-             'items': ['Image','Mathjax' 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+             'items': ['Image','Mathjax', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
             # '/',
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
@@ -138,10 +138,10 @@ WSGI_APPLICATION = 'mathbyrony.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mathbyrony_mysql',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'NAME': 'mahmudul7959$mathbyrony',
+        'USER': 'mahmudul7959',
+        'PASSWORD': 'mahmud@mathbyrony',
+        'HOST': 'mahmudul7959.mysql.pythonanywhere-services.com',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -190,7 +190,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "mathbyrony/static"),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR,"static")
+STATIC_ROOT = "/home/mahmudul7959/math-by-rony-backend-django/static"
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+MEDIA_ROOT = "/home/mahmudul7959/math-by-rony-backend-django/media"

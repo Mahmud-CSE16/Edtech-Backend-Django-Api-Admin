@@ -25,7 +25,8 @@ SECRET_KEY = 'qkikxb(s78)sct=x7!9!$()@mqm*v6-o@$+iq&nj*ykd)xgntt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mahmudul7959.pythonanywhere.com',]
+#ALLOWED_HOSTS = ['mahmudul7959.pythonanywhere.com',]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -135,13 +136,29 @@ WSGI_APPLICATION = 'mathbyrony.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# #For Hosting site
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'mahmudul7959$mathbyrony',
+#         'USER': 'mahmudul7959',
+#         'PASSWORD': 'mahmud@mathbyrony',
+#         'HOST': 'mahmudul7959.mysql.pythonanywhere-services.com',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#         },
+#     }
+# }
+
+# #For Localhost
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mahmudul7959$mathbyrony',
-        'USER': 'mahmudul7959',
-        'PASSWORD': 'mahmud@mathbyrony',
-        'HOST': 'mahmudul7959.mysql.pythonanywhere-services.com',
+        'NAME': 'mathbyrony_mysql',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -190,7 +207,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "mathbyrony/static"),
 ]
-STATIC_ROOT = "/home/mahmudul7959/math-by-rony-backend-django/static"
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+#STATIC_ROOT = "/home/mahmudul7959/math-by-rony-backend-django/static"
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = "/home/mahmudul7959/math-by-rony-backend-django/media"
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+#MEDIA_ROOT = "/home/mahmudul7959/math-by-rony-backend-django/media"

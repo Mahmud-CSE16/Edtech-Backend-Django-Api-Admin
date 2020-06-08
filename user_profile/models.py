@@ -27,8 +27,8 @@ class Profile(models.Model):
     phone = models.CharField(max_length=15,blank=True)
     address = models.CharField(max_length=255,blank=True)
     institute = models.CharField(max_length=255,blank=True)
-    level = models.ForeignKey(Category,on_delete=models.CASCADE,default=1)
-    district = models.ForeignKey(District, on_delete=models.CASCADE,default=1)
+    level = models.ForeignKey(Category,on_delete=models.CASCADE)
+    district = models.ForeignKey(District, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('name', )
@@ -38,7 +38,10 @@ class Profile(models.Model):
         return self.name
 
     def profile_image(self):
+        if(self.profile_pic_url != None and self.profile_pic_url != "" ):
             return mark_safe('<img src="%s" width="50" height="50" />' % (self.profile_pic_url))
+        else:
+            return mark_safe('<img src="/static/img/user_icon.png" width="50" height="50" />')
 
     profile_image.short_description = 'Profile Image'
 

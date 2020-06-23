@@ -25,6 +25,7 @@ SECRET_KEY = 'qkikxb(s78)sct=x7!9!$()@mqm*v6-o@$+iq&nj*ykd)xgntt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SITE_DOMAIN = "http://127.0.0.1:8000"
 #ALLOWED_HOSTS = ['mahmudul7959.pythonanywhere.com',]
 ALLOWED_HOSTS = []
 
@@ -41,12 +42,27 @@ INSTALLED_APPS = [
 
     #install apps
     'user_profile.apps.UserProfileConfig',
-    'exam.apps.ExamConfig',
+    'question.apps.QuestionConfig',
+    'common.apps.CommonConfig',
 
     #install package apps
     'ckeditor',
     'ckeditor_uploader',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 25,
+}
 
 #CKEDITOR_UPLOAD_PATH
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -85,7 +101,7 @@ CKEDITOR_CONFIGS = {
             ]},
         ],
         'toolbar': 'YourCustomToolbarConfig',
-        # 'height': 291,
+        'height': 200,
         'width': '100%',
         # 'filebrowserWindowHeight': 725,
         'filebrowserWindowWidth': 740,

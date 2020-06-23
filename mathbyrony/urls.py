@@ -22,6 +22,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/',include('ckeditor_uploader.urls')),
-    path('',views.IndexView.as_view())
+    path('',views.IndexView.as_view()),
+
+    # REST FRAMEWORK URLs
+    path('api/question/',include('question.api.urls','question')),
+    path('api/user/',include('user_profile.api.urls','user_profile')),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 

@@ -2,7 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from exam.models import Category
+from rest_framework.authtoken.models import Token
+
+from common.models import Category,SubCategory
 from django.utils.safestring import mark_safe
 
 
@@ -28,6 +30,7 @@ class Profile(models.Model):
     address = models.CharField(max_length=255,blank=True)
     institute = models.CharField(max_length=255,blank=True)
     level = models.ForeignKey(Category,on_delete=models.CASCADE)
+    sub_level = models.ForeignKey(SubCategory,on_delete=models.CASCADE)
     district = models.ForeignKey(District, on_delete=models.CASCADE)
 
     class Meta:
@@ -56,3 +59,7 @@ class Profile(models.Model):
     #     instance.profile.save()
 
 
+@receiver(post_save, sender=User)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)

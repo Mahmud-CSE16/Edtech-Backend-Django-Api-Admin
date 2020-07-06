@@ -27,6 +27,7 @@ class Profile(models.Model):
     email = models.CharField(max_length=255, blank=True)
     profile_pic_url = models.URLField(max_length=500,blank=True)
     phone = models.CharField(max_length=15,blank=True)
+    dateOfBirth = models.DateField(blank=True,null=True)
     address = models.CharField(max_length=255,blank=True)
     institute = models.CharField(max_length=255,blank=True)
     level = models.ForeignKey(Category,on_delete=models.CASCADE)

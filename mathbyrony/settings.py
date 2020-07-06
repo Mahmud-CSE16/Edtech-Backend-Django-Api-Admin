@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -119,6 +120,7 @@ CKEDITOR_CONFIGS = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -229,3 +231,11 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 #MEDIA_ROOT = "/home/mahmudul7959/math-by-rony-backend-django/media"
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+# # CORS_ORIGIN_WHITELIST
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:3000",
+# ]

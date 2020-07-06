@@ -1,20 +1,32 @@
 from rest_framework import serializers
 
-from user_profile.models import Profile
+from user_profile.models import Profile, District
 from django.contrib.auth.models import User
+from common.api.serializers import CategorySerializer, SubCategorySerializer
 
 
-# UserProfileSerializer
-class UserProfileSerializer(serializers.ModelSerializer):
-    
+class DistrictSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = District
+        fields = "__all__"
+
+
+
+#ProfileSerializer
+class ProfileSerializer(serializers.ModelSerializer):
+    level = CategorySerializer()
+    sub_level = SubCategorySerializer()
+    district = DistrictSerializer()
+
     class Meta:
         model = Profile
-        fields = ['uid','device_token','name','email','profile_pic_url','phone','address','institute','level','district',]
+        fields = ['uid','device_token','name','email','profile_pic_url','phone','address','dateOfBirth','institute','level','sub_level','district',]
+
 
 #UserSerializer
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-    profile = UserProfileSerializer()
+    profile = ProfileSerializer()
 
     class Meta:
         model = User
@@ -28,11 +40,4 @@ class UserSerializer(serializers.ModelSerializer):
         Profile.objects.update_or_create(user=user,**profile_data)
         return user
         
-
-#ProfileSerializer
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Profile
-        fields = ['uid','device_token','name','email','profile_pic_url','phone','address','institute','level','sub_level','district',]
-
     

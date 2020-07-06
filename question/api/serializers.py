@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from question.models import Question
 from django.conf import settings
+import sys
+sys.path.append("...")
+from common.api.serializers import ChapterSerializer
 
 
 
@@ -20,10 +23,12 @@ class QuestionSerializer(serializers.ModelSerializer):
     option3 = serializers.SerializerMethodField('get_absolute_potion3')
     option4 = serializers.SerializerMethodField('get_absolute_potion4')
     solution = serializers.SerializerMethodField('get_absolute_solution')
+    chapters = ChapterSerializer(many=True)
+    
 
     class Meta:
         model = Question
-        fields = ['body','option1','option2','option3','option4','solution','answer_number',]
+        fields = ['body','option1','option2','option3','option4','solution','answer_number','chapters']
 
     
     # get_absolute_body
@@ -56,7 +61,6 @@ class QuestionSerializer(serializers.ModelSerializer):
     def get_absolute_solution(self, question):
         text = get_absolute_text(question.solution)
         return text
-
 
 
 

@@ -6,6 +6,6 @@ app_name = 'question'
 
 urlpatterns =[
     path('<pk>',question_api_view, name = 'question'),
-    path('list/', QuestionListAPIView.as_view(), name='list'),
+    path('list/', QuestionListAPIView.as_view(), name='question_list'),
 ]
 

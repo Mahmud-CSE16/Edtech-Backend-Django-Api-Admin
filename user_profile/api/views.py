@@ -1,19 +1,26 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 from django.contrib.auth import authenticate
 
-from rest_framework.decorators import api_view , permission_classes
+from rest_framework.decorators import api_view , permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 
-from user_profile.models import Profile
+from user_profile.models import Profile, District
 
-from user_profile.api.serializers import UserSerializer, ProfileSerializer
+from user_profile.api.serializers import UserSerializer, ProfileSerializer, DistrictSerializer
+import json
 
 
 # register
 @api_view(['POST',])
+@permission_classes([])
+@authentication_classes([])
 def registration_api_view(request):
     if request.method == 'POST':
         serializer = UserSerializer(data = request.data)
@@ -31,10 +38,10 @@ def registration_api_view(request):
             data['token'] = Token.objects.get(user=user).key
             #is registered
 
-            date['isRegistered'] = True
+            data['isRegistered'] = True
         else:
             data = serializer.errors
-            date['isRegistered'] = False
+            data['isRegistered'] = False
 
         return Response(data)
 
@@ -48,8 +55,8 @@ class LoginAPIView(APIView):
     def post(self, request):
         context={}
 
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.data['username']
+        password = request.data['password']
 
         user = authenticate(username=username,password=password)
 
@@ -109,8 +116,15 @@ def profile_api_update_view(request):
         data = {}
         if serializer.is_valid():
             serializer.save()
-            data['response'] = "Account updata success"
+            data['response'] = "Account update success"
             data['profile'] = serializer.data
             return Response(data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class DistrictListAPIView(ListAPIView):
+    queryset = District.objects.all().order_by('name')
+    serializer_class = DistrictSerializer
+    authentication_classes = [TokenAuthentication,]
+    permission_classes = [IsAuthenticated,]

@@ -50,6 +50,7 @@ class Language(models.Model):
 """Board"""
 class Board(models.Model):
     name = models.CharField(max_length=255, unique=True,)
+    subcategory = models.ForeignKey(SubCategory,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

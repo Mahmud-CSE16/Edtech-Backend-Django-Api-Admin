@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate
 from rest_framework.decorators import api_view , permission_classes, authentication_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
+from mathbyrony.api_permissons import Check_API_KEY_Auth
 
 from user_profile.models import Profile, District
 
@@ -19,7 +20,7 @@ import json
 
 # register
 @api_view(['POST',])
-@permission_classes([])
+@permission_classes([Check_API_KEY_Auth,])
 @authentication_classes([])
 def registration_api_view(request):
     if request.method == 'POST':
@@ -50,7 +51,7 @@ def registration_api_view(request):
 class LoginAPIView(APIView):
 
     authentication_classes = []
-    permission_classes = []
+    permission_classes = [Check_API_KEY_Auth,]
 
     def post(self, request):
         context={}
@@ -90,7 +91,8 @@ class LoginAPIView(APIView):
 
 # get profile
 @api_view(['GET',])
-@permission_classes([IsAuthenticated,])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated & Check_API_KEY_Auth ])
 def profile_api_view(request):
     try :
         profile = request.user.profile
@@ -104,7 +106,8 @@ def profile_api_view(request):
 
 # update profile
 @api_view(['PUT',])
-@permission_classes([IsAuthenticated,])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated & Check_API_KEY_Auth ])
 def profile_api_update_view(request):
     try :
         profile = request.user.profile
@@ -126,5 +129,5 @@ def profile_api_update_view(request):
 class DistrictListAPIView(ListAPIView):
     queryset = District.objects.all().order_by('name')
     serializer_class = DistrictSerializer
-    authentication_classes = [TokenAuthentication,]
-    permission_classes = [IsAuthenticated,]
+    authentication_classes = []
+    permission_classes = [Check_API_KEY_Auth,]

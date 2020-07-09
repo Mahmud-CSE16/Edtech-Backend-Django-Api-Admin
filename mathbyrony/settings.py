@@ -21,6 +21,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'qkikxb(s78)sct=x7!9!$()@mqm*v6-o@$+iq&nj*ykd)xgntt'
+API_KEY_SECRET = 'mahmudul7959'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

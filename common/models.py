@@ -52,8 +52,14 @@ class Board(models.Model):
     name = models.CharField(max_length=255, unique=True,)
     subcategory = models.ForeignKey(SubCategory,on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ('subcategory__name','name',)
+        constraints = [
+            models.UniqueConstraint(fields=['name', 'subcategory'], name='board constraint')
+        ]
+
     def __str__(self):
-        return self.name
+        return self.name+"-->"+self.subcategory.name
 
 
 
@@ -81,7 +87,7 @@ class QuestionHistory(models.Model):
 
 
     def __str__(self):
-        return self.board.name+" "+str(self.year)
+        return self.board.name+" "+str(self.year)+"-->"+self.board.subcategory.name
 
 """Question Type"""
 class QuestionType(models.Model):

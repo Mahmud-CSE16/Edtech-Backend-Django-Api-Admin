@@ -22,7 +22,7 @@ class Question(models.Model):
     solution = RichTextUploadingField()
     subcategories = models.ManyToManyField(SubCategory)
     chapters = models.ManyToManyField(Chapter)
-    language = models.ForeignKey(Language, on_delete=models.CASCADE)
+    language = models.ForeignKey(Language, on_delete=models.CASCADE,default=1)
     histories = models.ManyToManyField(QuestionHistory,blank=True)
     types = models.ManyToManyField(QuestionType)
 

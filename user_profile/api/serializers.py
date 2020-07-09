@@ -14,9 +14,9 @@ class DistrictSerializer(serializers.ModelSerializer):
 
 #ProfileSerializer
 class ProfileSerializer(serializers.ModelSerializer):
-    level = CategorySerializer()
-    sub_level = SubCategorySerializer()
-    district = DistrictSerializer()
+    level = CategorySerializer(read_only=True,)
+    sub_level = SubCategorySerializer(read_only=True,)
+    district = DistrictSerializer(read_only=True,)
 
     class Meta:
         model = Profile

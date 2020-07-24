@@ -8,13 +8,13 @@ from common.api.serializers import  CategorySerializer, SubCategorySerializer ,C
 
 
 class CategoryListAPIView(ListAPIView):
-    queryset = Category.objects.all().order_by("name")
+    queryset = Category.objects.all().filter(published=True).order_by("name")
     permission_classes = [Check_API_KEY_Auth,]
     serializer_class = CategorySerializer
 
 
 class SubCategoryListAPIView(ListAPIView):
-    queryset = SubCategory.objects.all().order_by("name")
+    queryset = SubCategory.objects.all().filter(published=True).order_by("name")
     serializer_class = SubCategorySerializer
     permission_classes = [Check_API_KEY_Auth,]
     filter_backends = [SearchFilter, OrderingFilter,DjangoFilterBackend,]
@@ -22,7 +22,7 @@ class SubCategoryListAPIView(ListAPIView):
 
 
 class ChapterListAPIView(ListAPIView):
-    queryset = Chapter.objects.all().order_by("name")
+    queryset = Chapter.objects.all().filter(published=True).order_by("number")
     serializer_class = ChapterSerializer
     permission_classes = [Check_API_KEY_Auth,]
     filter_backends = [SearchFilter, OrderingFilter,DjangoFilterBackend,]

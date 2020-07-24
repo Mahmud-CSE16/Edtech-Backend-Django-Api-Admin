@@ -12,9 +12,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from mathbyrony.api_permissons import Check_API_KEY_Auth
 
-from user_profile.models import Profile, District
+from user_profile.models import Profile, District, NotificationStatus
 
-from user_profile.api.serializers import UserSerializer, ProfileSerializer, DistrictSerializer
+from user_profile.api.serializers import UserSerializer, ProfileSerializer, DistrictSerializer, ProfileSerializerForRegistration, NotificationStatusSerializer
 import json
 
 
@@ -25,16 +25,19 @@ import json
 def registration_api_view(request):
     if request.method == 'POST':
         serializer = UserSerializer(data = request.data)
-        print(request.data)
+        # print(request.data)
         data={}
         if serializer.is_valid():
             user = serializer.save()
 
             profile_serializer = ProfileSerializer(user.profile)
+            notification_status_serializer = NotificationStatusSerializer(user.notificationstatus)
 
             data['response'] = "Successfully registered"
             # profile
             data['profile'] = profile_serializer.data
+            # notification status
+            data['notification_status'] = notification_status_serializer.data
             # auth token
             data['token'] = Token.objects.get(user=user).key
             #is registered
@@ -60,6 +63,7 @@ class LoginAPIView(APIView):
         password = request.data['password']
 
         user = authenticate(username=username,password=password)
+        print(user.notificationstatus)
 
         if user:
             try:
@@ -69,9 +73,9 @@ class LoginAPIView(APIView):
                 token = Token.objects.create(user=user).key
                 
             
-            
             context['response'] = 'Successfully authenticated.'
             context['profile'] = ProfileSerializer(user.profile).data
+            context['notification_status'] = NotificationStatusSerializer(user.notificationstatus).data
             context['token'] = token
             context['isLoggedIn'] = True
             
@@ -115,15 +119,53 @@ def profile_api_update_view(request):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'PUT':
-        serializer = ProfileSerializer(profile,data=request.data)
+        serializer = ProfileSerializerForRegistration(profile,data=request.data)
         data = {}
         if serializer.is_valid():
-            serializer.save()
+            profile = serializer.save()
             data['response'] = "Account update success"
-            data['profile'] = serializer.data
+            data['profile'] = ProfileSerializer(profile).data
             return Response(data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# get notification status
+@api_view(['GET',])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated & Check_API_KEY_Auth ])
+def notification_status_api_view(request):
+    try :
+        notificationstatus = request.user.notificationstatus
+    except NotificationStatus.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = NotificationStatusSerializer(notificationstatus)
+        return Response(serializer.data)
+
+
+# update notification status
+@api_view(['PUT',])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated & Check_API_KEY_Auth ])
+def notification_status_api_update_view(request):
+    try :
+        notificationstatus = request.user.notificationstatus
+    except NotificatonStatus.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'PUT':
+        serializer = NotificationStatusSerializer(notificationstatus,data=request.data)
+        data = {}
+        if serializer.is_valid():
+            notificationstatus = serializer.save()
+            data['response'] = "update success"
+            data['notificationstatus'] = NotificationStatusSerializer(notificationstatus).data
+            return Response(data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class DistrictListAPIView(ListAPIView):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from question.models import Question
+from question.models import McqQuestion
 from django.conf import settings
 import sys
 sys.path.append("...")
@@ -15,7 +15,7 @@ def get_absolute_text(value):
     text = value.replace(SEARCH_PATTERN, REPLACE_WITH)
     return text
 
-class QuestionSerializer(serializers.ModelSerializer):
+class McqQuestionSerializer(serializers.ModelSerializer):
 
     body = serializers.SerializerMethodField('get_absolute_body')
     option1 = serializers.SerializerMethodField('get_absolute_potion1')
@@ -27,7 +27,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     
 
     class Meta:
-        model = Question
+        model = McqQuestion
         fields = ['body','option1','option2','option3','option4','solution','answer_number','chapters']
 
     

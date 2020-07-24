@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Question
+from .models import McqQuestion
 
 
 # Register your models here.
-@admin.register(Question)
-class QuestionAdmin(admin.ModelAdmin):
+@admin.register(McqQuestion)
+class McqQuestionAdmin(admin.ModelAdmin):
     list_display = ('question_body_field','published')
     list_editable = ('published',)
     list_filter = ('published','subcategories','chapters','histories','types','language',)

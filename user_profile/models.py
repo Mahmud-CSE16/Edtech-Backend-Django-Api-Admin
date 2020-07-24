@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
+from datetime import datetime
 
 from common.models import Category,SubCategory
 from django.utils.safestring import mark_safe
@@ -22,7 +23,6 @@ class District(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     uid = models.CharField(max_length=255,unique=True,blank=True)
-    device_token = models.CharField(max_length=255,blank=True)
     name = models.CharField(max_length=255,blank=True)
     email = models.CharField(max_length=255, blank=True)
     profile_pic_url = models.URLField(max_length=500,blank=True)
@@ -64,3 +64,13 @@ class Profile(models.Model):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+
+
+# notificationstatus
+class NotificationStatus(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    device_token = models.CharField(max_length=255,blank=True,null=True)
+    last_seen = models.DateTimeField(default=datetime.now,blank=True, null=True)
+    
+

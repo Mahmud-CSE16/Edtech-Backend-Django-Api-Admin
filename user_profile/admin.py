@@ -1,9 +1,16 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
-from .models import Profile,District
+from .models import Profile,District,NotificationStatus
 from django.utils.safestring import mark_safe
 from django.db.models.functions import Lower
+
+
+# Notification Status
+class NotificationStatusInline(admin.StackedInline):
+    model = NotificationStatus
+    title = 'Notification Status'
+    verbose_name = 'Notification Status'
 
 
 # Register your models here.
@@ -18,6 +25,7 @@ admin.site.unregister(User)
 class UserAdmin(AuthUserAdmin):
     inlines = [
         ProfileInline,
+        NotificationStatusInline
     ]
     fieldsets = [
         (None,{

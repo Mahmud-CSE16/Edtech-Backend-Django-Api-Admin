@@ -11,7 +11,7 @@ from common.models import SubCategory,Chapter,Language,QuestionHistory,QuestionT
 options = [
     (1,1), (2,2), (3,3),(4,4),
 ]
-class Question(models.Model):
+class McqQuestion(models.Model):
     published = models.BooleanField(default=False)
     question_body = RichTextUploadingField()
     option1 = RichTextUploadingField()

@@ -22,6 +22,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'qkikxb(s78)sct=x7!9!$()@mqm*v6-o@$+iq&nj*ykd)xgntt'
 API_KEY_SECRET = 'mahmudul7959'
+FCM_SERVER_KEY = 'AAAA9lV8u74:APA91bE-L_tirOl2DP0N9THg6_e3wbGGUa6xHSRGoC9-h9oU44pJrJMQ2MpguhQ-y2UVMKtyoV89oxU0J5bQ5LqYfLSNegYydkeAGB2n-nnIQtmafWSwTYX1gf8HyX8wKds5HZIPMYvq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'user_profile.apps.UserProfileConfig',
     'question.apps.QuestionConfig',
     'common.apps.CommonConfig',
+    'notification.apps.NotificationConfig',
 
     #install package apps
     'ckeditor',
@@ -54,6 +56,7 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
 ]
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -77,13 +80,12 @@ CKEDITOR_CONFIGS = {
             ['Source', '-', 'Bold', 'Italic']
         ],
         'toolbar_YourCustomToolbarConfig': [
-            {'name': 'document', 'items': ['Source', '-', 'Save', 'Preview', 'Print',]},
+            {'name': 'document', 'items': ['Source', '-', 'Save', 'Preview',]},
             {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
             {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
             # '/',
             {'name': 'basicstyles',
              'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
-            {'name': 'about', 'items': ['About']},
             {'name': 'paragraph',
              'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
                        'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',]},
@@ -94,13 +96,14 @@ CKEDITOR_CONFIGS = {
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
             {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
-            # '/',  # put this to force next toolbar on new line
-            {'name': 'yourcustomtools', 'items': [
-                # put the name of your editor.ui.addButton here
-                'Preview',
-                'Maximize',
+            # # '/',  # put this to force next toolbar on new line
+            # {'name': 'yourcustomtools', 'items': [
+            #     # put the name of your editor.ui.addButton here
+            #     'Preview',
+            #     'Maximize',
 
-            ]},
+            # ]},
+            {'name': 'about', 'items': ['About']},
         ],
         'toolbar': 'YourCustomToolbarConfig',
         'height': 200,
@@ -214,9 +217,11 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
+DATETIME_FORMAT = '%d-%m-%Y %H:%M:%S' 
 
-USE_TZ = True
+USE_L10N = False
+
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

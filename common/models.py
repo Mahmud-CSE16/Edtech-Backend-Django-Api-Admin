@@ -6,6 +6,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 """Category Class"""
 class Category(models.Model):
     name = models.CharField(max_length=255)
+    published = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -13,7 +14,12 @@ class Category(models.Model):
 """SubCategory Class"""
 class SubCategory(models.Model):
     name = models.CharField(max_length=255)
+    mark_of_correct_mcq_question = models.DecimalField(max_digits=5,decimal_places=3)
+    negative_mark_of_incorrect_question = models.DecimalField(max_digits=5,decimal_places=3)
+    number_of_questions_for_mcq_exam = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    published = models.BooleanField(default=False)
+
 
     class Meta:
         ordering = ('category__name','name')
@@ -27,6 +33,8 @@ class Chapter(models.Model):
     name= models.CharField(max_length=255)
     number = models.IntegerField()
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    published = models.BooleanField(default=False)
+
 
     def __str__(self):
         return self.name +"-->"+self.subcategory.name

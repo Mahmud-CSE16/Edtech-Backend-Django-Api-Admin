@@ -5,6 +5,8 @@ from common.api.serializers import SubCategorySerializer
 
 class NotificationSerializer(serializers.ModelSerializer):
     subcategories = SubCategorySerializer(many=True,)
+    published_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", required=False)
+
 
     class Meta:
         model = Notification

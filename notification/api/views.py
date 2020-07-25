@@ -11,7 +11,7 @@ from notification.api.serializers import NotificationSerializer
 
 # question list view api 
 class NotificationListAPIView(ListAPIView):
-    queryset = Notification.objects.all().filter(published=True).order_by('published_time')
+    queryset = Notification.objects.all().filter(published=True).order_by('-published_time')
     serializer_class = NotificationSerializer
     authentication_classes = [TokenAuthentication,]
     permission_classes = [IsAuthenticated & Check_API_KEY_Auth,]

@@ -17,6 +17,7 @@ class SubCategory(models.Model):
     mark_of_correct_mcq_question = models.DecimalField(max_digits=5,decimal_places=3)
     negative_mark_of_incorrect_question = models.DecimalField(max_digits=5,decimal_places=3)
     number_of_questions_for_mcq_exam = models.IntegerField()
+    time_in_minute = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     published = models.BooleanField(default=False)
 

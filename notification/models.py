@@ -8,7 +8,7 @@ from django.conf import settings
 # Create your models here.
 
 class Notification(models.Model):
-    categories = models.ManyToManyField(Category,blank=True)
+    categories = models.ManyToManyField(Category)
     title = models.CharField(max_length=255)
     short_description = models.TextField()
     long_description = models.TextField(blank=True, null=True)

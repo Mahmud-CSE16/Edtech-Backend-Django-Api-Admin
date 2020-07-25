@@ -12,7 +12,7 @@ class SubCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SubCategory
-        fields = ['id','name','category','mark_of_correct_mcq_question','negative_mark_of_incorrect_question','number_of_questions_for_mcq_exam',]
+        fields = ['id','name','category','mark_of_correct_mcq_question','negative_mark_of_incorrect_question','number_of_questions_for_mcq_exam','time_in_minute',]
 
 class ChapterSerializer(serializers.ModelSerializer):
     subcategory = SubCategorySerializer(read_only=True,)

@@ -1,13 +1,13 @@
 from rest_framework import serializers
 from notification.models import Notification
-from common.api.serializers import SubCategorySerializer
+from common.api.serializers import CategorySerializer
 
 
 class NotificationSerializer(serializers.ModelSerializer):
-    subcategories = SubCategorySerializer(many=True,)
+    categories = CategorySerializer(many=True,)
     published_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", required=False)
 
 
     class Meta:
         model = Notification
-        fields = ['title','short_description','long_description','subcategories','published_time',]
+        fields = ['title','short_description','long_description','categories','published_time',]

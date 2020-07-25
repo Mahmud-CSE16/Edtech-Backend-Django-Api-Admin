@@ -17,5 +17,5 @@ class NotificationListAPIView(ListAPIView):
     permission_classes = [IsAuthenticated & Check_API_KEY_Auth,]
     pagination_class = PageNumberPagination
     filter_backends = [SearchFilter, OrderingFilter,DjangoFilterBackend,]
-    filterset_fields = ['subcategories',]
+    filterset_fields = ['categories',]
     search_fields = ('title',)

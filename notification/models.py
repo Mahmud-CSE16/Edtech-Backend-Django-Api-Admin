@@ -1,5 +1,5 @@
 from django.db import models
-from common.models import SubCategory
+from common.models import Category
 from datetime import datetime
 from pyfcm import FCMNotification
 from django.conf import settings
@@ -8,7 +8,7 @@ from django.conf import settings
 # Create your models here.
 
 class Notification(models.Model):
-    subcategories = models.ManyToManyField(SubCategory)
+    categories = models.ManyToManyField(Category,blank=True)
     title = models.CharField(max_length=255)
     short_description = models.TextField()
     long_description = models.TextField(blank=True, null=True)
@@ -29,8 +29,8 @@ class Notification(models.Model):
             topic_condition = ""
 
 
-            for subcategory in self.subcategories.all():
-                topic_condition += "'{}' in topics || ".format(subcategory.name)
+            for category in self.categories.all():
+                topic_condition += "'{}' in topics || ".format(category.name)
 
             topic_condition += "'all' in topics"
 

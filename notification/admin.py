@@ -6,11 +6,11 @@ from .models import Notification
 class NotificationAdmin(admin.ModelAdmin):
     list_display = ('title','created_time_format','published_time_format','published',)
     list_editable = ('published',)
-    list_filter = ('subcategories','published',)
+    list_filter = ('categories','published',)
     search_fields = ('title','short_description','long_description',)
     fieldsets = [
         (None,{
-            'fields':('subcategories','title','short_description','long_description',),
+            'fields':('categories','title','short_description','long_description','published',),
         }),
     ]
 

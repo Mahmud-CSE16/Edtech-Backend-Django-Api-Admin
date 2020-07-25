@@ -15,7 +15,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(SubCategory)
 class SubCategoryAdmin(admin.ModelAdmin):
-    list_display = ('name','number_of_questions_for_mcq_exam','category','published',)
+    list_display = ('name','category','number_of_questions_for_mcq_exam','published',)
     list_editable = ('published',)
     list_filter = ('category','published')
     search_fields = ('name','category__name',)

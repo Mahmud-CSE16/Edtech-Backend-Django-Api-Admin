@@ -29,6 +29,7 @@ DEBUG = True
 
 SITE_DOMAIN = "http://127.0.0.1:8000"
 #ALLOWED_HOSTS = ['mahmudul7959.pythonanywhere.com',]
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 ALLOWED_HOSTS = []
 
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'question.apps.QuestionConfig',
     'common.apps.CommonConfig',
     'notification.apps.NotificationConfig',
+    'bigoto_bochor.apps.BigotoBochorConfig',
 
     #install package apps
     'ckeditor',

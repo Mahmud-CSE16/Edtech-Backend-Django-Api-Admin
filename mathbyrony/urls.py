@@ -29,6 +29,7 @@ urlpatterns = [
     path('api/user/',include('user_profile.api.urls','user_profile')),
     path('api/common/',include('common.api.urls','common')),
     path('api/notification/',include('notification.api.urls','notification')),
+    path('api/bigoto_bochor/',include('bigoto_bochor.api.urls','bigoto_bochor')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 

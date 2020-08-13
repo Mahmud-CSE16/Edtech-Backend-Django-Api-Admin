@@ -3,6 +3,7 @@ from common.models import Category
 from datetime import datetime
 from pyfcm import FCMNotification
 from django.conf import settings
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 # Create your models here.
@@ -11,7 +12,8 @@ class Notification(models.Model):
     categories = models.ManyToManyField(Category)
     title = models.CharField(max_length=255)
     short_description = models.TextField()
-    long_description = models.TextField(blank=True, null=True)
+    # long_description = models.TextField(blank=True, null=True)
+    long_description = RichTextUploadingField(blank=True, null=True)
     created_time = models.DateTimeField(default = datetime.now)
     published_time = models.DateTimeField(blank=True, null=True)
     published = models.BooleanField(default = False)

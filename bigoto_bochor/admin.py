@@ -23,7 +23,7 @@ class BigotoBochorAdmin(admin.ModelAdmin):
     # pdf file
     def embed_pdf_file(self,obj):
         if(obj.pdf_file != None and obj.pdf_file != "" ):
-            # return mark_safe('<embed src="{0}" type="application/pdf" width="50%" height="400px"/>'.format(obj.pdf_file.url,))
-            return mark_safe('<a href="{0}">Download PDF</a>'.format(obj.pdf_file.url,))
+            return mark_safe('<embed src="/pdf/?url={0}" type="application/pdf" width="100%" height="300px"/>'.format(obj.pdf_file.url,))
+            # return mark_safe('<a href="/pdf/?url={0}">Show PDF</a>'.format(obj.pdf_file.url,))
         
     embed_pdf_file.short_description = 'Question'

@@ -10,3 +10,5 @@ class BigotoBochor(models.Model):
 
     class Meta:
         ordering = ('-question_history__year','question_history__board__name','subcategory__name',)
+        verbose_name = "বিগত বছর"
+        verbose_name_plural = "বিগত বছর"

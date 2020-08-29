@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'common.apps.CommonConfig',
     'notification.apps.NotificationConfig',
     'bigoto_bochor.apps.BigotoBochorConfig',
+    'boi_porichiti.apps.BoiPorichitiConfig',
 
     #install package apps
     'ckeditor',

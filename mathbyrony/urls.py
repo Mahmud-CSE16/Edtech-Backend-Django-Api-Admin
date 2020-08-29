@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/',include('ckeditor_uploader.urls')),
     path('',views.IndexView.as_view()),
+    path('pdf/',views.showpdf,name="showpdf"),
 
     # REST FRAMEWORK URLs
     path('api/question/',include('question.api.urls','question')),
@@ -30,6 +31,7 @@ urlpatterns = [
     path('api/common/',include('common.api.urls','common')),
     path('api/notification/',include('notification.api.urls','notification')),
     path('api/bigoto_bochor/',include('bigoto_bochor.api.urls','bigoto_bochor')),
+    path('api/boi/',include('boi_porichiti.api.urls','boi_porichiti')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 

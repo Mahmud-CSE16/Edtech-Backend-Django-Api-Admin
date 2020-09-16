@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'notification.apps.NotificationConfig',
     'bigoto_bochor.apps.BigotoBochorConfig',
     'boi_porichiti.apps.BoiPorichitiConfig',
+    'shop.apps.ShopConfig',
+    'goniter_itihash.apps.GoniterItihashConfig',
 
     #install package apps
     'ckeditor',
@@ -58,6 +60,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'corsheaders',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 

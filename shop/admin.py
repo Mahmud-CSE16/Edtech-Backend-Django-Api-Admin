@@ -1,13 +1,13 @@
 from django.contrib import admin
 from django.conf import settings
 
-from .models import Boi
+from .models import Shop
 from django.utils.safestring import mark_safe
 
 # Register your models here.
 
-@admin.register(Boi)
-class BigotoBochorAdmin(admin.ModelAdmin):
+@admin.register(Shop)
+class ShopAdmin(admin.ModelAdmin):
     list_display = ('cover_img_view','title','embed_pdf_file')
     # list_editable = ('published',)
     list_display_links =('cover_img_view','title',)

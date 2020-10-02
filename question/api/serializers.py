@@ -1,19 +1,17 @@
 from rest_framework import serializers
 from question.models import McqQuestion
-from django.conf import settings
-import sys
-sys.path.append("...")
 from common.api.serializers import ChapterSerializer
+from common.models import get_absolute_text
 
 
 
-# replace to image full path
+""" # replace to image full path
 SEARCH_PATTERN = '/media/uploads/'
 REPLACE_WITH = '%s/media/uploads/' % settings.SITE_DOMAIN
 # replace to image full path
 def get_absolute_text(value):
     text = value.replace(SEARCH_PATTERN, REPLACE_WITH)
-    return text
+    return text """
 
 class McqQuestionSerializer(serializers.ModelSerializer):
 

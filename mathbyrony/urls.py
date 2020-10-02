@@ -31,9 +31,11 @@ urlpatterns = [
     path('api/common/',include('common.api.urls','common')),
     path('api/notification/',include('notification.api.urls','notification')),
     path('api/bigoto_bochor/',include('bigoto_bochor.api.urls','bigoto_bochor')),
+    path('api/topic/',include('topic_vittic_porashona.api.urls','topic_vittic_porashona')),
     path('api/boi/',include('boi_porichiti.api.urls','boi_porichiti')),
     path('api/shop/',include('shop.api.urls','shop')),
     path('api/goniter_itihash/',include('goniter_itihash.api.urls','goniter_itihash')),
+    path('api/blog/',include('blog.api.urls','blog')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 

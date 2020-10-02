@@ -1,7 +1,18 @@
 from django.db import models
 import datetime
+from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
+
+
+# replace to image full path
+SEARCH_PATTERN = '/media/uploads/'
+REPLACE_WITH = '%s/media/uploads/' % settings.SITE_DOMAIN
+# replace to image full path
+def get_absolute_text(value):
+    text = value.replace(SEARCH_PATTERN, REPLACE_WITH)
+    return text
+
 
 """Category Class"""
 class Category(models.Model):

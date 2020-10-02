@@ -7,6 +7,7 @@ from common.models import SubCategory
 # Create your models here.
 
 class Shop(models.Model):
+    published = models.BooleanField(default=True)
     title = models.CharField(max_length=255)
     cover_img = models.ImageField(upload_to='shop/cover')
     description = RichTextUploadingField(blank=True,null=True)

@@ -22,6 +22,8 @@ class Notification(models.Model):
         ordering = ('-created_time',)
 
     def save(self, *args, **kwargs): 
+        super(Notification, self).save(*args, **kwargs)
+
         if(self.published == True):
             self.published_time = datetime.now()
 
@@ -30,6 +32,7 @@ class Notification(models.Model):
             # Conditional topic messaging
             topic_condition = ""
 
+            # print(self.categories.all())
 
             for category in self.categories.all():
                 topic_condition += "'{}' in topics || ".format(category.name)
@@ -75,7 +78,6 @@ class Notification(models.Model):
             # print(content)
         else:
             self.published_time = None 
-        super(Notification, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

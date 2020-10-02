@@ -23,8 +23,8 @@ class SubCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Chapter)
 class ChapterAdmin(admin.ModelAdmin):
-    list_display = ('name','subcategory','published')
-    list_editable = ('published',)
+    list_display = ('name','subcategory','number','published')
+    list_editable = ('published','number')
     list_filter = ('subcategory','published')
     search_fields = ('name','subcategory__name',)
     list_per_page = 25

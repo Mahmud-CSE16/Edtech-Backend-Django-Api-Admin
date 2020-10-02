@@ -13,7 +13,7 @@ from goniter_itihash.api.serializers import GoniterItihashSerializer
 
 # bigoto bochor list view api 
 class GoniterItihashListAPIView(ListAPIView):
-    queryset = GoniterItihash.objects.all().order_by('title')
+    queryset = GoniterItihash.objects.all().filter(published=True).order_by('title')
     serializer_class = GoniterItihashSerializer
     authentication_classes = [TokenAuthentication,]
     permission_classes = [IsAuthenticated & Check_API_KEY_Auth,]

@@ -13,7 +13,7 @@ from shop.api.serializers import ShopSerializer
 
 # bigoto bochor list view api 
 class ShopListAPIView(ListAPIView):
-    queryset = Shop.objects.all().order_by('title')
+    queryset = Shop.objects.all().filter(published=True).order_by('title')
     serializer_class = ShopSerializer
     authentication_classes = [TokenAuthentication,]
     permission_classes = [IsAuthenticated & Check_API_KEY_Auth,]

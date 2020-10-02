@@ -13,7 +13,7 @@ from boi_porichiti.api.serializers import BoiSerializer
 
 # bigoto bochor list view api 
 class BoiListAPIView(ListAPIView):
-    queryset = Boi.objects.all().order_by('title')
+    queryset = Boi.objects.all().filter(published=True).order_by('title')
     serializer_class = BoiSerializer
     authentication_classes = [TokenAuthentication,]
     permission_classes = [IsAuthenticated & Check_API_KEY_Auth,]

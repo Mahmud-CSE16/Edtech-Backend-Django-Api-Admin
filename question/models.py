@@ -28,7 +28,7 @@ class McqQuestion(models.Model):
 
 
     def __str__(self):
-        return mark_safe(self.question_body)
+        return mark_safe(str(self.id)+". "+self.question_body)
 
     def question_body_field(self):
             return mark_safe(self.question_body)

@@ -8,8 +8,8 @@ from django.utils.safestring import mark_safe
 
 @admin.register(GoniterItihash)
 class GoniterItihashAdmin(admin.ModelAdmin):
-    list_display = ('cover_img_view','title',)
-    # list_editable = ('published',)
+    list_display = ('cover_img_view','title','published',)
+    list_editable = ('published',)
     list_display_links =('cover_img_view','title',)
     search_fields = ('title',)
     list_per_page = 25

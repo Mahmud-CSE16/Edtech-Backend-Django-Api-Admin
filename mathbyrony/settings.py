@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'boi_porichiti.apps.BoiPorichitiConfig',
     'shop.apps.ShopConfig',
     'goniter_itihash.apps.GoniterItihashConfig',
+    'blog.apps.BlogConfig',
+    'topic_vittic_porashona.apps.TopicVitticPorashonaConfig',
 
     #install package apps
     'ckeditor',

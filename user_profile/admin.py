@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
-from .models import Profile,District,NotificationStatus
+from .models import Profile,NotificationStatus
 from django.utils.safestring import mark_safe
 from django.db.models.functions import Lower
 
@@ -89,5 +89,3 @@ class ProfileAdmin(admin.ModelAdmin):
     list_filter = ('level','district',)
     search_fields = ('name','level__name','district__name','address')
     list_per_page = 25
-
-admin.site.register(District)

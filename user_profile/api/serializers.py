@@ -1,22 +1,21 @@
 from rest_framework import serializers
 
-from user_profile.models import Profile, District, NotificationStatus
+from user_profile.models import Profile, NotificationStatus
 from django.contrib.auth.models import User
 from common.api.serializers import CategorySerializer, SubCategorySerializer
 
 
-class DistrictSerializer(serializers.ModelSerializer):
+""" class DistrictSerializer(serializers.ModelSerializer):
     class Meta:
         model = District
         fields = "__all__"
-
+ """
 
 
 #ProfileSerializer
 class ProfileSerializer(serializers.ModelSerializer):
     level = CategorySerializer(read_only=True,)
     sub_level = SubCategorySerializer(read_only=True,)
-    district = DistrictSerializer(read_only=True,)
 
     class Meta:
         model = Profile

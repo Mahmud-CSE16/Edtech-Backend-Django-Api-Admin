@@ -27,10 +27,10 @@ FCM_SERVER_KEY = 'AAAA9lV8u74:APA91bE-L_tirOl2DP0N9THg6_e3wbGGUa6xHSRGoC9-h9oU44
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-SITE_DOMAIN = "http://127.0.0.1:8000"
-#ALLOWED_HOSTS = ['mahmudul7959.pythonanywhere.com',]
-X_FRAME_OPTIONS = 'SAMEORIGIN'
-ALLOWED_HOSTS = []
+SITE_DOMAIN = "ec2-3-14-65-191.us-east-2.compute.amazonaws.com"
+#SITE_DOMAIN = "http://127.0.0.1:8000"
+ALLOWED_HOSTS = ['ec2-3-14-65-191.us-east-2.compute.amazonaws.com',]
+#ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -166,35 +166,35 @@ WSGI_APPLICATION = 'mathbyrony.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# #For Hosting site
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'mahmudul7959$mathbyrony',
-#         'USER': 'mahmudul7959',
-#         'PASSWORD': 'mahmud@mathbyrony',
-#         'HOST': 'mahmudul7959.mysql.pythonanywhere-services.com',
-#         'PORT': '3306',
-#         'OPTIONS': {
-#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-#         },
-#     }
-# }
-
-# #For Localhost
+#For Hosting site
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mathbyrony_mysql',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'NAME': 'djangobackend',
+        'USER': 'mathbyrony',
+        'PASSWORD': 'mathbyronyawsdb',
+        'HOST': 'mathbyronydb.ckz96yxdewjh.us-east-2.rds.amazonaws.com',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
     }
 }
+
+# # #For Localhost
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'mathbyrony_mysql',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#         },
+#     }
+# }
 
 
 # Password validation

@@ -10,7 +10,7 @@ from django.utils.safestring import mark_safe
 
 
 
-class District(models.Model):
+""" class District(models.Model):
     name = models.CharField(max_length=25,unique=True)
 
 
@@ -18,7 +18,7 @@ class District(models.Model):
         ordering = ('name', )
 
     def __str__(self):
-        return self.name
+        return self.name """
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -32,7 +32,7 @@ class Profile(models.Model):
     institute = models.CharField(max_length=255,blank=True)
     level = models.ForeignKey(Category,on_delete=models.CASCADE)
     sub_level = models.ForeignKey(SubCategory,on_delete=models.CASCADE)
-    district = models.ForeignKey(District, on_delete=models.CASCADE)
+    district = models.CharField(max_length=255,blank=True)
 
     class Meta:
         ordering = ('name', )

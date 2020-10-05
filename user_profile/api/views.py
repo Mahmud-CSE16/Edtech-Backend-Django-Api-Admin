@@ -12,9 +12,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from mathbyrony.api_permissons import Check_API_KEY_Auth
 
-from user_profile.models import Profile, District, NotificationStatus
+from user_profile.models import Profile, NotificationStatus
 
-from user_profile.api.serializers import UserSerializer, ProfileSerializer, DistrictSerializer, ProfileSerializerForRegistration, NotificationStatusSerializer
+from user_profile.api.serializers import UserSerializer, ProfileSerializer, ProfileSerializerForRegistration, NotificationStatusSerializer
 import json
 
 
@@ -152,7 +152,7 @@ def notification_status_api_view(request):
 def notification_status_api_update_view(request):
     try :
         notificationstatus = request.user.notificationstatus
-    except NotificatonStatus.DoesNotExist:
+    except NotificationStatus.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'PUT':
@@ -168,8 +168,8 @@ def notification_status_api_update_view(request):
 
 
 
-class DistrictListAPIView(ListAPIView):
+""" class DistrictListAPIView(ListAPIView):
     queryset = District.objects.all().order_by('name')
     serializer_class = DistrictSerializer
     authentication_classes = []
-    permission_classes = [Check_API_KEY_Auth,]
+    permission_classes = [Check_API_KEY_Auth,] """

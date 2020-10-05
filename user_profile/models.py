@@ -30,8 +30,8 @@ class Profile(models.Model):
     dateOfBirth = models.DateField(blank=True,null=True)
     address = models.CharField(max_length=255,blank=True)
     institute = models.CharField(max_length=255,blank=True)
-    level = models.ForeignKey(Category,on_delete=models.CASCADE)
-    sub_level = models.ForeignKey(SubCategory,on_delete=models.CASCADE)
+    level = models.ForeignKey(Category,on_delete=models.CASCADE,blank=True)
+    sub_level = models.ForeignKey(SubCategory,on_delete=models.CASCADE,blank=True)
     district = models.CharField(max_length=255,blank=True)
 
     class Meta:

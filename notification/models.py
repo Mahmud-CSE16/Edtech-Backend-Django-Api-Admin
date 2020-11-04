@@ -1,5 +1,5 @@
 from django.db import models
-from common.models import Category
+from common.models import SubCategory
 from datetime import datetime
 from pyfcm import FCMNotification
 from django.conf import settings
@@ -9,7 +9,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 class Notification(models.Model):
-    categories = models.ManyToManyField(Category)
+    subCategories = models.ManyToManyField(SubCategory)
     title = models.CharField(max_length=255)
     short_description = models.TextField()
     # long_description = models.TextField(blank=True, null=True)
@@ -30,14 +30,32 @@ class Notification(models.Model):
             push_service = FCMNotification(api_key=settings.FCM_SERVER_KEY)
 
             # Conditional topic messaging
-            topic_condition = ""
+            #topic_condition = ""
 
             # print(self.categories.all())
 
-            for category in self.categories.all():
-                topic_condition += "'{}' in topics || ".format(category.name)
+            for category in self.subCategories.all():
+                #topic_condition += "'{}' in topics || ".format(category.name)
 
-            topic_condition += "'all' in topics"
+                data_message = {
+                    "click_action": 'FLUTTER_NOTIFICATION_CLICK',
+                    "title": self.title,
+                    "short_description": self.short_description,
+                    "long_description": self.long_description,
+                    # "image_url": event.image_url
+                }
+
+                result = push_service.notify_topic_subscribers(
+                    topic_name="all", #category.name
+                    #condition = topic_condition,
+                    message_title=self.title, 
+                    message_body=self.short_description,
+                    click_action = 'FLUTTER_NOTIFICATION_CLICK',
+                    data_message = data_message
+                )
+                
+
+            """ topic_condition += "'all' in topics"
 
             print(topic_condition)
 
@@ -58,7 +76,7 @@ class Notification(models.Model):
                 click_action = 'FLUTTER_NOTIFICATION_CLICK',
                 data_message = data_message
             )
-            print(result)
+            print(result) """
 
 
 

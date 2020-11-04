@@ -21,8 +21,7 @@ class Notification(models.Model):
     class Meta:
         ordering = ('-created_time',)
 
-    def save(self, *args, **kwargs): 
-        super(Notification, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
 
         if(self.published == True):
             self.published_time = datetime.now()
@@ -96,6 +95,9 @@ class Notification(models.Model):
             # print(content)
         else:
             self.published_time = None 
+
+        #save
+        super(Notification, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

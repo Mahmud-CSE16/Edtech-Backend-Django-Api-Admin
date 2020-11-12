@@ -8,7 +8,7 @@ from django.utils.safestring import mark_safe
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('cover_img_view','title','created_time','published',)
+    list_display = ('cover_img_view','title','created_time_format','published',)
     list_editable = ('published',)
     list_display_links =('cover_img_view','title',)
     list_filter = ('created_time',)
@@ -24,4 +24,8 @@ class BlogAdmin(admin.ModelAdmin):
             return mark_safe('<img src="/static/img/cover.jpg" width="50" height="50" />')
 
     cover_img_view.short_description = 'Cover Image'
+
+    def created_time_format(self, obj):
+        return obj.created_time.strftime("%d-%b-%Y %H:%M:%S")
+    created_time_format.short_description = 'Created Time'
 

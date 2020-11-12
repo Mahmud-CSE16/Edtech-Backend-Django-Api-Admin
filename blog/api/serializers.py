@@ -1,9 +1,11 @@
 from rest_framework import serializers
 from blog.models import Blog
+from common.models import get_absolute_text
 
 class BlogSerializer(serializers.ModelSerializer):
     cover_url = serializers.SerializerMethodField('get_cover_url')
     description = serializers.SerializerMethodField('get_absolute_description')
+    created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", required=False)
 
     class Meta:
         model = Blog

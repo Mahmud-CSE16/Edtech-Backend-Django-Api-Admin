@@ -119,6 +119,8 @@ CKEDITOR_CONFIGS = {
         # 'filebrowserWindowHeight': 725,
         'filebrowserWindowWidth': 740,
         'toolbarCanCollapse': True,
+        'allowedContent': True,
+        'removeFormatAttributes': '',
         'mathJaxLib': 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML',
         'tabSpaces': 4,
         'extraPlugins': ','.join([

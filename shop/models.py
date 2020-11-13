@@ -12,6 +12,7 @@ class Shop(models.Model):
     cover_img = models.ImageField(upload_to='shop/cover')
     description = RichTextUploadingField(blank=True,null=True)
     pdf_file = models.FileField(upload_to='shop/pdf',blank=True, null=True)
+    price = models.IntegerField()
     subcategories = models.ManyToManyField(SubCategory,blank=True)
 
     class Meta:

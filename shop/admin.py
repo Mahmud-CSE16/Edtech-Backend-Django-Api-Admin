@@ -8,7 +8,7 @@ from django.utils.safestring import mark_safe
 
 @admin.register(Shop)
 class ShopAdmin(admin.ModelAdmin):
-    list_display = ('cover_img_view','title','embed_pdf_file','published',)
+    list_display = ('cover_img_view','title','embed_pdf_file','price','published',)
     list_editable = ('published',)
     list_display_links =('cover_img_view','title',)
     list_filter = ('subcategories',)

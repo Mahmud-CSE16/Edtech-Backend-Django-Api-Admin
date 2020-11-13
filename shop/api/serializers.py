@@ -11,7 +11,7 @@ class ShopSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Shop
-        fields = ['title','cover_url','description','pdf_url','subcategories',]
+        fields = ['title','cover_url','description','pdf_url','price','subcategories',]
 
     def get_pdf_url(self, obj):
         request = self.context.get('request')
